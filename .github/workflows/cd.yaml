@@ -16,22 +16,3 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main'
-
-  #   steps:
-  #   - name: Deploy via SSH
-  #     uses: appleboy/ssh-action@v0.1.7
-  #     with:
-  #       host: ${{ secrets.SERVER_HOST }}
-  #       username: ${{ secrets.SERVER_USER }}
-  #       key: ${{ secrets.SERVER_SSH_KEY }}
-  #       script: |
-  #         cd /path/to/your/app
-  #         git pull origin main
-  #         source venv/bin/activate
-  #         pip install -r requirements.txt
-  #         nohup python app.py &
