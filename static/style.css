@@ -44,9 +44,17 @@ p {
     font-weight: bold;
     border-radius: 30px;
     transition: background 0.3s ease, color 0.3s ease;
+    cursor: pointer;
 }
 
 .btn:hover {
     background-color: #6e8efb;
     color: #fff;
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffffff;
 }
