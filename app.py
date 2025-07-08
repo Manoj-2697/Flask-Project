@@ -19,7 +19,7 @@ def home3():
 if __name__ == '__main__':
     import threading
     def run_app(app, port):
-        app.run(port=port)
+        app.run(host='0.0.0.0', port=port)
     threading.Thread(target=run_app, args=(app1, 8080)).start()
     threading.Thread(target=run_app, args=(app2, 8081)).start()
     threading.Thread(target=run_app, args=(app3, 8082)).start()
