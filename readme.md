@@ -30,6 +30,35 @@ Flask Project/
 - The workflow checks out the latest code into the `D:/FlaskProject` directory, installs dependencies, and starts the Flask apps.
 - This automates deployment after every merge to `master`.
 
+# Prerequisites: Setting Up GitHub Actions Self-Hosted Runner
+
+To enable automated deployment with GitHub Actions, you must set up a self-hosted runner on your Windows machine:
+
+1. Go to your repository on GitHub.
+2. Navigate to **Settings > Actions > Runners** and click **New self-hosted runner**.
+3. Choose **Windows** as the operating system.
+4. Follow the instructions to download and extract the runner, for example:
+   ```powershell
+   mkdir C:\actions-runner
+   cd C:\actions-runner
+   Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.316.0/actions-runner-win-x64-2.316.0.zip -OutFile actions-runner-win-x64-2.316.0.zip
+   tar -xf actions-runner-win-x64-2.316.0.zip
+   ```
+5. Configure the runner (replace URL and TOKEN with your repo's values):
+   ```cmd
+   config.cmd --url https://github.com/OWNER/REPO --token YOUR_TOKEN
+   ```
+6. Start the runner:
+   ```cmd
+   run.cmd
+   ```
+   Leave this window open while using GitHub Actions.
+7. (Optional) To run the runner as a service so it starts automatically:
+   ```cmd
+   svc install
+   svc start
+   ```
+
 # How to Start the App Manually
 1. Open CMD and navigate to your project directory:
    ```cmd
