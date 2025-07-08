@@ -8,12 +8,18 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - name: Checkout code to D drive
+      - name: Remove old folder from D drive
         run: |
-          if exist C:\FlaskProject rmdir /S /Q C:\FlaskProject
-          git clone %GITHUB_SERVER_URL%/%GITHUB_REPOSITORY%.git C:\FlaskProject
+          if exist D:\FlaskProject rmdir /S /Q D:\FlaskProject
+        shell: cmd
+
+      - name: Clone repo to D drive
+        run: |
+          git clone %GITHUB_SERVER_URL%/%GITHUB_REPOSITORY%.git D:\FlaskProject
+        shell: cmd
 
       - name: Run Flask app from D drive
         run: |
-          cd /d C:\FlaskProject
+          cd /d D:\FlaskProject
           start /B C:\Users\HP\AppData\Local\Programs\Python\Python312\python.exe app.py
+        shell: cmd
