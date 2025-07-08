@@ -17,9 +17,14 @@ def home3():
     return render_template('index.html', title='App 3', message='Welcome to App 3!')
 
 if __name__ == '__main__':
-    import threading
+    import multiprocessing
     def run_app(app, port):
-        app.run(host='0.0.0.0', port=port)
-    threading.Thread(target=run_app, args=(app1, 8080)).start()
-    threading.Thread(target=run_app, args=(app2, 8081)).start()
-    threading.Thread(target=run_app, args=(app3, 8082)).start()
+        app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
+
+    processes = []
+    for app, port in zip([app1, app2, app3], [8080, 8081, 8082]):
+        p = multiprocessing.Process(target=run_app, args=(app, port))
+        p.start()
+        processes.append(p)
+    for p in processes:
+        p.join()
