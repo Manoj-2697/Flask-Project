@@ -11,15 +11,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
       - name: Run Flask app
         run: |
-          start /B python app.py
+          start /B C:\Users\HP\AppData\Local\Programs\Python\Python312\python.exe app.py
