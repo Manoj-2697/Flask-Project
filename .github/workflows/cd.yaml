@@ -8,9 +8,12 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run Flask app
+      - name: Checkout code to D drive
         run: |
+          if exist D:\FlaskProject rmdir /S /Q D:\FlaskProject
+          git clone %GITHUB_SERVER_URL%/%GITHUB_REPOSITORY%.git D:\FlaskProject
+
+      - name: Run Flask app from D drive
+        run: |
+          cd /d D:\FlaskProject
           start /B C:\Users\HP\AppData\Local\Programs\Python\Python312\python.exe app.py
