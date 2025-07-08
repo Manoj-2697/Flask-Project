@@ -1,4 +1,2 @@
 Flask
 pytest
-
-ssh-copy-id hp@192.168.31.217
