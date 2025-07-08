@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          path: C:/FlaskProject
+          path: D:/FlaskProject
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -20,10 +20,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd C:/FlaskProject
+          cd D:/FlaskProject
           pip install -r requirements.txt
 
       - name: Run Flask app
         run: |
-          cd C:/FlaskProject
+          cd D:/FlaskProject
           start /B python app.py
