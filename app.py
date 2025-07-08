@@ -1,29 +1,28 @@
 from flask import Flask, render_template
 
-app1 = Flask(__name__, template_folder='templates/app1', static_folder='static/app1')
-app2 = Flask(__name__, template_folder='templates/app2', static_folder='static/app2')
-app3 = Flask(__name__, template_folder='templates/app3', static_folder='static/app3')
-
-@app1.route('/')
-def home1():
-    return render_template('index.html', title='App 1', message='Welcome to App 1!')
-
-@app2.route('/')
-def home2():
-    return render_template('index.html', title='App 2', message='Welcome to App 2!')
-
-@app3.route('/')
-def home3():
-    return render_template('index.html', title='App 3', message='Welcome to App 3!')
+def run_app(app_num, port):
+    if app_num == 1:
+        app = Flask(__name__, template_folder='templates/app1', static_folder='static/app1')
+        @app.route('/')
+        def home():
+            return render_template('index.html', title='App 1', message='Welcome to App 1!')
+    elif app_num == 2:
+        app = Flask(__name__, template_folder='templates/app2', static_folder='static/app2')
+        @app.route('/')
+        def home():
+            return render_template('index.html', title='App 2', message='Welcome to App 2!')
+    elif app_num == 3:
+        app = Flask(__name__, template_folder='templates/app3', static_folder='static/app3')
+        @app.route('/')
+        def home():
+            return render_template('index.html', title='App 3', message='Welcome to App 3!')
+    app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
 
 if __name__ == '__main__':
     import multiprocessing
-    def run_app(app, port):
-        app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
-
     processes = []
-    for app, port in zip([app1, app2, app3], [8080, 8081, 8082]):
-        p = multiprocessing.Process(target=run_app, args=(app, port))
+    for app_num, port in zip([1, 2, 3], [8080, 8081, 8082]):
+        p = multiprocessing.Process(target=run_app, args=(app_num, port))
         p.start()
         processes.append(p)
     for p in processes:
