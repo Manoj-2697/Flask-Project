@@ -10,10 +10,10 @@ jobs:
     steps:
       - name: Checkout code to D drive
         run: |
-          if exist D:\FlaskProject rmdir /S /Q D:\FlaskProject
-          git clone %GITHUB_SERVER_URL%/%GITHUB_REPOSITORY%.git D:\FlaskProject
+          if exist C:\FlaskProject rmdir /S /Q C:\FlaskProject
+          git clone %GITHUB_SERVER_URL%/%GITHUB_REPOSITORY%.git C:\FlaskProject
 
       - name: Run Flask app from D drive
         run: |
-          cd /d D:\FlaskProject
+          cd /d C:\FlaskProject
           start /B C:\Users\HP\AppData\Local\Programs\Python\Python312\python.exe app.py
